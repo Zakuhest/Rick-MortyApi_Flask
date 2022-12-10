@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-center">Serie: Rick and Morty</h1>
+<br><br>
+<div class="card-body">
+    <form action="/search" method="post">
+        <div class="form-row">
+          <div class="input-group mb-0">
+          <div class="col">
+            <input type="text" name="id" class="form-control" placeholder="Id">
+          </div>
+          <div class="col">
+            <input type="text" name="name" class="form-control" placeholder="Name">
+          </div>
+          <div class="col">
+            <input type="text" name="location" class="form-control" placeholder="Location">
+          </div>
+          <div class="col">
+            <input type="text" name="origin" class="form-control" placeholder="Origin">
+          </div>
+            <button class="btn btn-primary" type="submit">Search</button>
+          </div>
+        </div>
+    </form>
+  </div>
+  <hr>
+
+<div class="card-group">
+{% for buscado in buscados %}
+<div class="col-sm-2">
+<div class="card border-success mb-3" style="max-width: 25rem;">
+  <img class="card-img-top" src="{{ buscado.image }}">
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+  <div class="card-header text-center border-danger">
+    <a href="{{ url_for('personajes.perfil', id=buscado.id) }}" class="btn btn-danger text-white">
+      <h6>{{ buscado.id }}</h6>
+  </a>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-center">
+      {% if buscado.status == "Alive" %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+        <label class="form-check-label" for="gridRadios2">
+          {{ buscado.name }}
+        </label>
+      </div>
+      {% endif %}
+      {% if buscado.status == "Dead" or buscado.status == "unknown" %}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios2" value="option2" checked>
+        <label class="form-check-label" for="gridRadios2">
+          {{ buscado.name }}
+        </label>
+      </div>
+      {% endif %}
+    </h5>
+    <p class="card-text"><small class="text-muted">Last Known Location:</small>
+      <br>{{ buscado.location.name }}<br><br>
+      <small class="text-muted">First Seen In:</small>
+      <br>{{ buscado.origin.name }}<br><br>
+      <small class="text-muted">Created At:</small>
+      {{ buscado.created }}
+    </p>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

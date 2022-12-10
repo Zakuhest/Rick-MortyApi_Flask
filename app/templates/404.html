@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-center">Serie: Rick and Morty</h1>
+<br><br>
+<div class="card-body">
+    <form action="/search" method="post">
+        <div class="form-row">
+          <div class="input-group mb-0">
+          <div class="col">
+            <input type="text" name="id" class="form-control" placeholder="Id">
+          </div>
+          <div class="col">
+            <input type="text" name="name" class="form-control" placeholder="Name">
+          </div>
+          <div class="col">
+            <input type="text" name="origin" class="form-control" placeholder="Origin">
+          </div>
+          <div class="col">
+            <input type="text" name="location" class="form-control" placeholder="Location">
+          </div>
+            <button class="btn btn-primary" type="submit">Search</button>
+          </div>
+        </div>
+    </form>
+  </div>
+  <hr>
+  <div class="container-1">
+    <h2 class="text-center text-white">No results found.</h2>
+  </div>
+{% endblock %}

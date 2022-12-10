@@ -1,0 +1,40 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<h1 class="text-center"><small class="text-muted">Name: </small>{{ profile.name }}</h1>
+<br>
+<div class="container">
+<div class="card-group">
+<div class="card border-danger" style="max-width: 20rem;">
+  <div class="card-header text-white text-center bg-dark border-danger">
+    <a class="btn btn-danger" href="{{ url_for('personajes.index') }}">Home</a>
+  </div>
+  <img class="card-img-top" src="{{ profile.image }}" alt="Card image cap">
+  <div class="card-body bg-dark text-white">
+    <h5 class="text-center">
+    <small class="text-muted">Status:</small>
+    {{ profile.status }}<br>
+    <small class="text-muted">Species:</small>
+    {{ profile.species }}<br>
+    <small class="text-muted">Type:</small>
+    {{ profile.type }}<br>
+    <small class="text-muted">Gender:</small>
+    {{ profile.gender }}<br>
+    <small class="text-muted">Origin:</small>
+    {{ profile.origin.name }}<br><br>
+    </h5>
+    <div class="card-footer text-white text-center bg-dark border-danger">
+      <h5 class="text-justify">
+        <small class="text-muted">Episodes:</small>
+        {% for episode in profile.episode %}
+        <a href="{{ episode }}"><hr class="border-primary">
+          {{ episode }}</a>
+        {% endfor %}
+      </h5>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

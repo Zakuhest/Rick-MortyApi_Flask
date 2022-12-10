@@ -1,0 +1,29 @@
+{% extends "/bootstrap/base.html" %} 
+
+{% block content %}
+
+<h1 class="text-center">Lista Personajes</h1>
+<br>
+<div class="table-responsive">
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for personaje in personajes %}
+        <tr>
+          <td class="text-center"><a href="{{ url_for('personajes.perfil', id=personaje.id)}}" class="btn btn-warning">{{ personaje.id }}</a></td>
+          <td class="text-center">{{ personaje.name }}</td>
+          <td class="text-center"><img src="{{ personaje.image }}"></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
